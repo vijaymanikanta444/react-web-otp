@@ -154,6 +154,7 @@ OTPInput.propTypes = {
   autoFocus: PropTypes.bool,
   otpType: PropTypes.oneOf(["number", "text", "password"]),
   renderInput: PropTypes.func,
+  customStyle: PropTypes.shape(),
 };
 
 export default OTPInput;
