@@ -1,6 +1,6 @@
 {
   "name": "react-web-otp",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "The react-web-otp is designed to enhance user authentication experiences in React applications by providing a flexible and customizable one-time password (OTP) input field. This component supports various input types including \"number\", \"text\", and \"password\", making it adaptable to different OTP formats and requirements.",
   "main": "index.js",
   "scripts": {

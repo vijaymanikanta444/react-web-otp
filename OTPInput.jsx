@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useId } from "react";
+import React, { useEffect, useRef, useState, useId } from "react";
 
 const OTPInput = ({
   length = 4,
@@ -12,6 +12,10 @@ const OTPInput = ({
   otpType = "text",
   renderInput = ({ key, ...restProps }) => <input key={key} {...restProps} />,
   customStyle = {},
+  separatorInterval = 1,
+  seperator = "",
+  prefix = "",
+  includePrefix = false,
 }) => {
   const [otp, setOtp] = useState(new Array(length).fill(""));
 
@@ -24,12 +28,24 @@ const OTPInput = ({
     password: "password",
   };
 
+  useEffect(() => {
+    setOtp(new Array(length || 4).fill(""));
+  }, [length]);
+
   // to focus the first element
   useEffect(() => {
     if (otpInputRef.current[0] && autoFocus) {
       otpInputRef.current[0].focus();
     }
-  }, []);
+  }, [length]);
+
+  const onHandleOtpSubmit = (resultantOtp) => {
+    onSubmit(
+      `${
+        includePrefix && prefix ? prefix.substring(prefix.length - 1) : ""
+      }${resultantOtp}`
+    );
+  };
 
   const onHandleInputChange = (e, index) => {
     const { value } = e.target;
@@ -48,7 +64,7 @@ const OTPInput = ({
 
     const combinedOtp = newOtp.join("");
     if (combinedOtp.length === length) {
-      onSubmit(combinedOtp);
+      onHandleOtpSubmit(combinedOtp);
     }
   };
 
@@ -113,12 +129,52 @@ const OTPInput = ({
 
     const combinedOtp = newOtp.join("");
     if (combinedOtp.length === length) {
-      onSubmit(combinedOtp);
+      onHandleOtpSubmit(combinedOtp);
     }
+  };
+
+  const shouldRenderSeparator = (index) => {
+    if (Array.isArray(separatorInterval)) {
+      let cumulativeIndex = 0;
+      for (let i = 0; i < separatorInterval.length; i++) {
+        cumulativeIndex += separatorInterval[i];
+        if (index + 1 === cumulativeIndex) {
+          return true;
+        }
+      }
+      return false;
+    }
+    return (index + 1) % separatorInterval === 0;
+  };
+
+  const seperatorProps = {
+    style: {
+      margin: "0 5px",
+    },
   };
 
   return (
     <>
+      {prefix && (
+        <React.Fragment>
+          {renderInput({
+            value: prefix?.substring(prefix.length - 1),
+            style: {
+              height: "40px",
+              width: "40px",
+              textAlign: "center",
+              fontSize: "1.2em",
+              margin: "5px",
+              ...customStyle,
+            },
+            disabled: true,
+          })}
+          {(separatorInterval === 0 || separatorInterval.includes(0)) &&
+            (typeof seperator === "function"
+              ? seperator({ ...seperatorProps })
+              : seperator.substring(seperator.length - 1) || null)}
+        </React.Fragment>
+      )}
       {otp.map((value, index) => {
         const inputProps = {
           key: `${index}_${id}`,
@@ -139,9 +195,18 @@ const OTPInput = ({
           },
         };
 
-        return renderInput({
-          ...inputProps,
-        });
+        return (
+          <React.Fragment key={index}>
+            {renderInput({
+              ...inputProps,
+            })}
+            {shouldRenderSeparator(index) &&
+              index + 1 < length &&
+              (typeof seperator === "function"
+                ? seperator({ ...seperatorProps })
+                : seperator.substring(seperator.length - 1) || null)}
+          </React.Fragment>
+        );
       })}
     </>
   );
