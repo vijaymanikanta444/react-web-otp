@@ -12,13 +12,6 @@ React Web OTP is a customizable OTP (One-Time Password) input component for Reac
 - Clipboard paste handling with validation
 - Custom styles for input fields
 
-## Tech
-
-`react-web-otp` uses a number of open source projects to work properly:
-
-- `React` - A JavaScript library for building user interfaces
-- `PropTypes` - Runtime type checking for React props
-
 And of course, React Web OTP itself is open source with a [public repository][react-web-otp] on GitHub.
 
 ## Installation
@@ -39,7 +32,7 @@ yarn add react-web-otp
 
 ## Demo
 
-A `live demo` of the OTPInput component can be found [here](https://nodejs.org/).
+A `live demo` of the OTPInput component can be found [here](https://google.com/).
 
 ## Usage
 
