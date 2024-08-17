@@ -6,6 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vijaymanikanta444/react-web-otp"
+  },
   "keywords": [
     "otp",
     "react-otp",
