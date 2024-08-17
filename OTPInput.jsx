@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState, useId } from "react";
-import PropTypes from "prop-types";
 
 const OTPInput = ({
   length = 4,
@@ -146,15 +145,6 @@ const OTPInput = ({
       })}
     </>
   );
-};
-
-OTPInput.propTypes = {
-  length: PropTypes.number,
-  onSubmit: PropTypes.func,
-  autoFocus: PropTypes.bool,
-  otpType: PropTypes.oneOf(["number", "text", "password"]),
-  renderInput: PropTypes.func,
-  customStyle: PropTypes.shape(),
 };
 
 export default OTPInput;
