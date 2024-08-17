@@ -12,7 +12,7 @@ React Web OTP is a customizable OTP (One-Time Password) input component for Reac
 - Clipboard paste handling with validation
 - Custom styles for input fields
 
-And of course, React Web OTP itself is open source with a [public repository][react-web-otp] on GitHub.
+And of course, React Web OTP itself is open source with a [public repository](https://github.com/vijaymanikanta444/react-web-otp) on GitHub.
 
 ## Installation
 
@@ -54,23 +54,43 @@ const App = () => {
   return (
     <div>
       <h1>Enter your OTP</h1>
+      <span>With Prefix</span>
+      <br />
       <OTPInput
         length={6}
         onSubmit={handleSubmit}
         autoFocus
         otpType="number"
-        customStyle={{ border: '1px solid #ccc', borderRadius: '4px' }}
+        customStyle={{ border: "1px solid #ccc", borderRadius: "4px" }}
         includePrefix
         prefix={"H"}
         seperator={"-"}
         separatorInterval={2}
       />
 
+      <br />
+      <span>Prefix with seperator</span>
+      <br />
+      <OTPInput
+        length={6}
+        onSubmit={handleSubmit}
+        autoFocus
+        otpType="number"
+        customStyle={{ border: "1px solid #ccc", borderRadius: "4px" }}
+        includePrefix
+        prefix={"H"}
+        seperator={"-"}
+        separatorInterval={[0, 2]}
+      />
+
+      <br />
+      <span>With out Prefix</span>
+      <br />
       <OTPInput
         length={6}
         onSubmit={handleSubmit}
         seperator={customSeperator}
-        separatorInterval={[2,3]}
+        separatorInterval={[2, 3]}
       />
     </div>
   );
@@ -79,7 +99,7 @@ const App = () => {
 export default App;
 ```
 
-<img width="471" alt="Screenshot 2024-08-18 at 4 03 14 AM" src="https://github.com/user-attachments/assets/84d02e49-7a01-47a8-9031-ba0638b427a8">
+<img width="475" alt="Screenshot 2024-08-18 at 4 35 02 AM" src="https://github.com/user-attachments/assets/b2f3b211-dc3c-4683-a359-15ec334655fb" style="border: 2px solid black;">
 
 ## Props API
 
