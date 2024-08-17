@@ -169,7 +169,9 @@ const OTPInput = ({
             },
             disabled: true,
           })}
-          {(separatorInterval === 0 || separatorInterval.includes(0)) &&
+          {(separatorInterval === 0 ||
+            (Array.isArray(separatorInterval) &&
+              separatorInterval?.includes(0))) &&
             (typeof seperator === "function"
               ? seperator({ ...seperatorProps })
               : seperator.substring(seperator.length - 1) || null)}
