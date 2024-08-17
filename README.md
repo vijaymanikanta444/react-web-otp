@@ -12,7 +12,7 @@ React Web OTP is a customizable OTP (One-Time Password) input component for Reac
 - Clipboard paste handling with validation
 - Custom styles for input fields
 
-And of course, React Web OTP itself is open source with a [public repository][react-web-otp] on GitHub.
+And of course, React Web OTP itself is open source with a [public repository](https://github.com/vijaymanikanta444/react-web-otp) on GitHub.
 
 ## Installation
 
@@ -54,23 +54,43 @@ const App = () => {
   return (
     <div>
       <h1>Enter your OTP</h1>
+      <span>With Prefix</span>
+      <br />
       <OTPInput
         length={6}
         onSubmit={handleSubmit}
         autoFocus
         otpType="number"
-        customStyle={{ border: '1px solid #ccc', borderRadius: '4px' }}
+        customStyle={{ border: "1px solid #ccc", borderRadius: "4px" }}
         includePrefix
         prefix={"H"}
         seperator={"-"}
         separatorInterval={2}
       />
 
+      <br />
+      <span>Prefix with seperator</span>
+      <br />
+      <OTPInput
+        length={6}
+        onSubmit={handleSubmit}
+        autoFocus
+        otpType="number"
+        customStyle={{ border: "1px solid #ccc", borderRadius: "4px" }}
+        includePrefix
+        prefix={"H"}
+        seperator={"-"}
+        separatorInterval={[0, 2]}
+      />
+
+      <br />
+      <span>With out Prefix</span>
+      <br />
       <OTPInput
         length={6}
         onSubmit={handleSubmit}
         seperator={customSeperator}
-        separatorInterval={[2,3]}
+        separatorInterval={[2, 3]}
       />
     </div>
   );
@@ -79,7 +99,7 @@ const App = () => {
 export default App;
 ```
 
-<img width="471" alt="Screenshot 2024-08-18 at 4 03 14 AM" src="https://github.com/user-attachments/assets/84d02e49-7a01-47a8-9031-ba0638b427a8">
+<img width="475" alt="Screenshot 2024-08-18 at 4 35 02 AM" src="https://github.com/user-attachments/assets/b2f3b211-dc3c-4683-a359-15ec334655fb" style="border: 2px solid black;">
 
 ## Props API
 
@@ -88,18 +108,18 @@ Prop Name| Type| Default| Description
 
 ---
 
-| Prop Name | Type | Default | Description |
-|----------|----------|----------|-----------|
-| length | ```number``` | 4 | The number of OTP input fields. |
-| onSubmit | ```func``` | (otp) => console.log({ otp }, "Please send the onSubmit props to OTPInput to handle the otp") | Function to handle the OTP submission. |
-| autoFocus | ```bool``` | false | If true, the first input field will be focused automatically. |
-| otpType | ```string``` | text | The type of OTP input, can be one of "number", "text", "password". |
-| renderInput | ```func``` | ({ key, ...restProps }) => <input key={key} {...restProps} /> | Custom render function for the input fields. |
-| customStyle | ```object``` | {} | Custom styles to apply to each input field. |
-|includePrefix| ```boolean``` | false | If the includePrefix is true then the otp returned from the onSubmit function will include the prefix |
-|prefix| ```string``` | "" | The prefix length should not exceed 1 if it exceed more than 1 then the last value is taken if prefix = 'HG' then the prefix will be G | 
-|seperator| ```string or react component``` | "" | if the type of seperator is string then the length should be 1 if it exceeded by 1 then then the last character of the string will be used as a seperator. we can also send the seperator as a react component ``` (props) => { return <span {...props}>@123</span>}``` |
-|separatorInterval| ```number or number[]```| "" | the seperatorInterval can be either string or array of strings. If ```separatorInterval is number then the seperator will render with that interval``` and if the ```separatorInterval is array of numbers then the seperator will render by each number in the array```|
+| Prop Name         | Type                        | Default                                                                                       | Description                                                                                                                                                                                                                                                        |
+| ----------------- | --------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| length            | `number`                    | 4                                                                                             | The number of OTP input fields.                                                                                                                                                                                                                                    |
+| onSubmit          | `func`                      | (otp) => console.log({ otp }, "Please send the onSubmit props to OTPInput to handle the otp") | Function to handle the OTP submission.                                                                                                                                                                                                                             |
+| autoFocus         | `bool`                      | false                                                                                         | If true, the first input field will be focused automatically.                                                                                                                                                                                                      |
+| otpType           | `string`                    | text                                                                                          | The type of OTP input, can be one of "number", "text", "password".                                                                                                                                                                                                 |
+| renderInput       | `func`                      | ({ key, ...restProps }) => <input key={key} {...restProps} />                                 | Custom render function for the input fields.                                                                                                                                                                                                                       |
+| customStyle       | `object`                    | {}                                                                                            | Custom styles to apply to each input field.                                                                                                                                                                                                                        |
+| includePrefix     | `boolean`                   | false                                                                                         | If the includePrefix is true then the otp returned from the onSubmit function will include the prefix                                                                                                                                                              |
+| prefix            | `string`                    | ""                                                                                            | The prefix length should not exceed 1 if it exceed more than 1 then the last value is taken if prefix = 'HG' then the prefix will be G                                                                                                                             |
+| seperator         | `string or react component` | ""                                                                                            | if the type of seperator is string then the length should be 1 if it exceeded by 1 then then the last character of the string will be used as a seperator. we can also send the seperator as a react component `(props) => { return <span {...props}>@123</span>}` |
+| separatorInterval | `number or number[]`        | ""                                                                                            | the seperatorInterval can be either string or array of strings. If `separatorInterval is number then the seperator will render with that interval` and if the `separatorInterval is array of numbers then the seperator will render by each number in the array`   |
 
 ## Development
 
